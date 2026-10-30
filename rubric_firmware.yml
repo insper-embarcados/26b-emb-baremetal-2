@@ -1,0 +1,4 @@
+forbiten:
+  - names:
+    - gpio_get
+    error_text: Você não deve fazer pooling no pino, deve utilizar ISR para ler os pinos.
