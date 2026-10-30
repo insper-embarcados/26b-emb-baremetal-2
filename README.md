@@ -42,6 +42,39 @@ Se o botão for acionado enquanto o LED estiver piscando, a ação pendente deve
 
 Após uma confirmação ou um cancelamento, o sistema deve estar pronto para receber um novo acionamento do botão. A leitura do botão e o controle da temporização e das piscadas não devem bloquear a execução do restante do sistema.
 
+### Diagramas temporais
+
+Cada pulso na linha `BOTÃO` representa um acionamento. Os intervalos entre as piscadas são apenas ilustrativos; o importante é que a frequência varie gradualmente ao longo dos 6 segundos.
+
+#### LED apagado — acionamento confirmado
+
+```text
+EVENTO                solicitação                         confirmação (6s)
+BOTÃO      ___________|‾|_____________________________________________
+LED        ___________|‾‾‾‾|____|‾‾‾|___|‾‾|__|‾|_|‾|_|‾|_|‾‾‾‾‾‾‾‾
+ESTADO       APAGADO          frequência crescente                ACESO
+```
+
+#### LED apagado — acionamento cancelado
+
+```text
+EVENTO                solicitação            cancelamento
+BOTÃO      ___________|‾|________________________|‾|__________________
+LED        ___________|‾‾‾‾|____|‾‾‾|___|‾‾|__|‾|_|‾|__________________
+ESTADO       APAGADO       frequência crescente          APAGADO
+```
+
+O segundo acionamento interrompe a temporização, cancela a ação pendente e restaura imediatamente o estado apagado.
+
+#### LED aceso — desligamento confirmado
+
+```text
+EVENTO                solicitação                         confirmação (6s)
+BOTÃO      ___________|‾|_____________________________________________
+LED        ‾‾‾‾‾‾‾‾‾‾|‾|_|‾|_|‾‾|__|‾‾‾|___|‾‾‾‾|______|‾‾‾‾‾‾‾‾|___________
+ESTADO        ACESO           frequência decrescente             APAGADO
+```
+
 ## Regras
 
 - **Proibido**: realizar polling no GPIO: `gpio_get`
