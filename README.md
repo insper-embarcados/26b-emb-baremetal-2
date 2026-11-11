@@ -13,6 +13,11 @@
 
 ## Descrição da Avaliação
 
+
+[![Demonstração em vídeo](https://img.youtube.com/vi/Tt-Vl7NMXKQ/sddefault.jpg)](https://www.youtube.com/watch?v=Tt-Vl7NMXKQ)
+
+
+
 > Periféricos necessários:
 > - 1x botão
 > - UART
