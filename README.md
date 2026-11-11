@@ -17,21 +17,21 @@
 > - 1x botão
 > - UART
 
-Implemente um sistema de acionamento temporizado utilizando um botão e um LED. O botão solicita que o estado estável do LED seja alterado, mas a alteração somente deve ser confirmada após **6 segundos**. Durante esse intervalo, o LED deve piscar para indicar que existe uma ação pendente.
+Implemente um sistema de acionamento temporizado utilizando um botão e um LED. O botão solicita que o estado estável do LED seja alterado, mas a alteração somente deve ser confirmada após **10 segundos**. Durante esse intervalo, o LED deve piscar para indicar que existe uma ação pendente.
 
 O sistema deve iniciar com o LED apagado e apresentar o seguinte comportamento:
 
 ### Acionamento do LED
 
-- Com o LED apagado, um acionamento do botão deve iniciar uma temporização de **6 segundos**.
+- Com o LED apagado, um acionamento do botão deve iniciar uma temporização de **10 segundos**.
 - Durante a temporização, o LED deve piscar progressivamente, começando em uma frequência baixa e aumentando gradualmente a frequência.
-- Ao final dos 6 segundos, a ação deve ser confirmada e o LED deve permanecer aceso continuamente.
+- Ao final dos 10 segundos, a ação deve ser confirmada e o LED deve permanecer aceso continuamente.
 
 ### Desligamento do LED
 
-- Com o LED aceso, um acionamento do botão deve iniciar uma nova temporização de **6 segundos**.
+- Com o LED aceso, um acionamento do botão deve iniciar uma nova temporização de **10 segundos**.
 - Durante a temporização, o LED deve piscar, começando em uma frequência alta e reduzindo gradualmente a frequência.
-- Ao final dos 6 segundos, a ação deve ser confirmada e o LED deve permanecer apagado.
+- Ao final dos 10 segundos, a ação deve ser confirmada e o LED deve permanecer apagado.
 
 ### Cancelamento
 
@@ -44,12 +44,12 @@ Após uma confirmação ou um cancelamento, o sistema deve estar pronto para rec
 
 ### Diagramas temporais
 
-Cada pulso na linha `BOTÃO` representa um acionamento. Os intervalos entre as piscadas são apenas ilustrativos; o importante é que a frequência varie gradualmente ao longo dos 6 segundos.
+Cada pulso na linha `BOTÃO` representa um acionamento. Os intervalos entre as piscadas são apenas ilustrativos; o importante é que a frequência varie gradualmente ao longo dos 10 segundos.
 
 #### LED apagado — acionamento confirmado
 
 ```text
-EVENTO                solicitação                         confirmação (6s)
+EVENTO                solicitação                         confirmação (10s)
 BOTÃO      ___________|‾|_____________________________________________
 LED        ___________|‾‾‾‾|____|‾‾‾|___|‾‾|__|‾|_|‾|_|‾|_|‾‾‾‾‾‾‾‾
 ESTADO       APAGADO          frequência crescente                ACESO
@@ -69,7 +69,7 @@ O segundo acionamento interrompe a temporização, cancela a ação pendente e r
 #### LED aceso — desligamento confirmado
 
 ```text
-EVENTO                solicitação                         confirmação (6s)
+EVENTO                solicitação                         confirmação (10s)
 BOTÃO      ___________|‾|_____________________________________________
 LED        ‾‾‾‾‾‾‾‾‾‾|‾|_|‾|_|‾‾|__|‾‾‾|___|‾‾‾‾|______|‾‾‾‾‾‾‾‾|___________
 ESTADO        ACESO           frequência decrescente             APAGADO
